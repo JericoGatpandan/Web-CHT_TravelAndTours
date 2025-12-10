@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link rel="stylesheet" href="customer-view.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" aria-label="Main navigation">
+      <div class="sidebar-header">
+        <i
+          class="fa-solid fa-plane-departure logo-icon"
+          aria-hidden="true"
+        ></i>
+        <div class="sidebar-brand">
+          <span class="sidebar-title">CHT Travel</span>
+          <span class="sidebar-subtitle">Admin Console</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" id="primaryNav">
+        <button
+          class="sidebar-link active"
+          data-section="dashboard"
+          type="button"
+        >
+          <i class="fa-solid fa-table-cells-large" aria-hidden="true"></i>
+          <span>Dashboard</span>
+        </button>
+        <button class="sidebar-link" data-section="bookings" type="button">
+          <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+          <span>Bookings</span>
+        </button>
+        <button class="sidebar-link" data-section="clients" type="button">
+          <i class="fa-solid fa-users" aria-hidden="true"></i>
+          <span>Clients</span>
+        </button>
+        <button class="sidebar-link" data-section="packages" type="button">
+          <i class="fa-solid fa-gift" aria-hidden="true"></i>
+          <span>Packages</span>
+        </button>
+        <button class="sidebar-link" data-section="trips" type="button">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <span>Trips</span>
+        </button>
+        <button
+          class="sidebar-link"
+          data-section="accommodations"
+          type="button"
+        >
+          <i class="fa-solid fa-hotel" aria-hidden="true"></i>
+          <span>Accommodations</span>
+        </button>
+        <button class="sidebar-link" data-section="vehicles" type="button">
+          <i class="fa-solid fa-car" aria-hidden="true"></i>
+          <span>Vehicles</span>
+        </button>
+        <button class="sidebar-link" data-section="payments" type="button">
+          <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
+          <span>Payments</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="sidebar-link logout" type="button">
+          <i
+            class="fa-solid fa-arrow-right-from-bracket"
+            aria-hidden="true"
+          ></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="content" aria-live="polite">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button id="sidebarToggle" type="button" class="primary-btn" aria-label="Toggle navigation sidebar">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
+          <div>
+            <h1 class="page-title" id="pageTitle">Customer</h1>
+            <p class="page-subtitle" id="pageSubtitle">Overview of customer's bookings.</p>
+          </div>
+        </div>
+        <div class="top-bar-actions">
+          <button class="primary-btn" type="button">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            <span>New Booking</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="page-header" data-section="dashboard" data-section-root>
+        <h2 class="header-title">Recent Trips</h2>
+        <p class="header-desc">Monitor customer's bookings and upcoming trips.</p>
+
+        <div class="dashboard-section">
+          <div class="dashboard-section-header">
+            <span>Trips</span>
+            <a href="#" class="view-all-link">View All</a>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Trip ID</th>
+                  <th>Customer</th>
+                  <th>Destination</th>
+                  <th>Package</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>TRP-001</td>
+                  <td>John Smith</td>
+                  <td>Boracay</td>
+                  <td>Beach Paradise</td>
+                  <td>Nov 5, 2025</td>
+                  <td>Nov 12, 2025</td>
+                  <td><span class="table-status ongoing">Ongoing</span></td>
+                  <td>
+                    <button onclick="openBookingModal('book', 'TRP-001')" class="text-cyan-500 hover:text-cyan-600 text-sm mr-3">Book</button>
+                    <button onclick="openBookingModal('edit', 'TRP-001')" class="text-cyan-500 hover:text-cyan-600 text-sm">Edit</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>TRP-002</td>
+                  <td>Sarah Johnson</td>
+                  <td>Palawan</td>
+                  <td>Island Adventure</td>
+                  <td>Nov 8, 2025</td>
+                  <td>Nov 15, 2025</td>
+                  <td><span class="table-status upcoming">Upcoming</span></td>
+                  <td>
+                    <button onclick="openBookingModal('book', 'TRP-002')" class="text-cyan-500 hover:text-cyan-600 text-sm mr-3">Book</button>
+                    <button onclick="openBookingModal('edit', 'TRP-002')" class="text-cyan-500 hover:text-cyan-600 text-sm">Edit</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>TRP-003</td>
+                  <td>Michael Brown</td>
+                  <td>Baguio</td>
+                  <td>Mountain Escape</td>
+                  <td>Nov 1, 2025</td>
+                  <td>Nov 8, 2025</td>
+                  <td><span class="table-status ongoing">Ongoing</span></td>
+                  <td>
+                    <button onclick="openBookingModal('book', 'TRP-003')" class="text-cyan-500 hover:text-cyan-600 text-sm mr-3">Book</button>
+                    <button onclick="openBookingModal('edit', 'TRP-003')" class="text-cyan-500 hover:text-cyan-600 text-sm">Edit</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>TRP-004</td>
+                  <td>Emily Davis</td>
+                  <td>Siargao</td>
+                  <td>Surf & Chill</td>
+                  <td>Nov 10, 2025</td>
+                  <td>Nov 17, 2025</td>
+                  <td><span class="table-status upcoming">Upcoming</span></td>
+                  <td>
+                    <button onclick="openBookingModal('book', 'TRP-004')" class="text-cyan-500 hover:text-cyan-600 text-sm mr-3">Book</button>
+                    <button onclick="openBookingModal('edit', 'TRP-004')" class="text-cyan-500 hover:text-cyan-600 text-sm">Edit</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>TRP-005</td>
+                  <td>David Wilson</td>
+                  <td>Cebu</td>
+                  <td>City Explorer</td>
+                  <td>Oct 28, 2025</td>
+                  <td>Nov 4, 2025</td>
+                  <td><span class="table-status completed">Completed</span></td>
+                  <td>
+                    <button onclick="openBookingModal('book', 'TRP-005')" class="text-cyan-500 hover:text-cyan-600 text-sm mr-3">Book</button>
+                    <button onclick="openBookingModal('edit', 'TRP-005')" class="text-cyan-500 hover:text-cyan-600 text-sm">Edit</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal hidden">
+    <div class="modal-overlay" onclick="closeBookingModal()"></div>
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h2 id="modalTitle" class="text-gray-900">Booking Details</h2>
+        <button onclick="closeBookingModal()" class="close-btn">&times;</button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <form class="space-y-6">
+          <!-- Row 1: Trip ID and Customer Info -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Trip ID -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">Trip ID</label>
+              <input id="tripId" type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-900" readonly>
+            </div>
+
+            <!-- Customer Name -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">Customer Name</label>
+              <input type="text" placeholder="John Smith" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500" required>
+            </div>
+          </div>
+
+          <!-- Row 2: Contact Information -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Email -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">Email Address</label>
+              <input type="email" placeholder="john@example.com" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500" required>
+            </div>
+
+            <!-- Phone -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">Phone Number</label>
+              <input type="tel" placeholder="+63 9XX XXX XXXX" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500" required>
+            </div>
+          </div>
+
+          <!-- Row 3: Destination & Package -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Destination -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">Destination</label>
+              <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500" required>
+                <option>Select Destination</option>
+                <option>Boracay</option>
+                <option>Palawan</option>
+                <option>Baguio</option>
+                <option>Siargao</option>
+                <option>Cebu</option>
+                <option>Davao</option>
+                <option>Iloilo</option>
+              </select>
+            </div>
+
+            <!-- Package -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">Package Type</label>
+              <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500" required>
+                <option>Select Package</option>
+                <option>Beach Paradise</option>
+                <option>Island Adventure</option>
+                <option>Mountain Escape</option>
+                <option>Surf & Chill</option>
+                <option>City Explorer</option>
+                <option>Luxury Retreat</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Row 4: Trip Dates -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Start Date -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">Start Date</label>
+              <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500" required>
+            </div>
+
+            <!-- End Date -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">End Date</label>
+              <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500" required>
+            </div>
+          </div>
+
+          <!-- Row 5: Participants & Accommodation -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Number of Participants -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">Number of Participants</label>
+              <input type="number" min="1" placeholder="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500" required>
+            </div>
+
+            <!-- Accommodation Type -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">Accommodation Type</label>
+              <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500" required>
+                <option>Select Accommodation</option>
+                <option>5-Star Hotel</option>
+                <option>3-Star Hotel</option>
+                <option>Resort</option>
+                <option>Hostel</option>
+                <option>Airbnb</option>
+                <option>Guest House</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Row 6: Transportation & Budget -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Transportation -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">Transportation</label>
+              <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500" required>
+                <option>Select Transportation</option>
+                <option>Flight + Hotel</option>
+                <option>Bus + Hotel</option>
+                <option>Car Rental</option>
+                <option>Group Tour</option>
+                <option>Private Tour</option>
+              </select>
+            </div>
+
+            <!-- Budget -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">Total Budget (PHP)</label>
+              <input type="number" placeholder="50,000" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500" required>
+            </div>
+          </div>
+
+          <!-- Special Requests -->
+          <div>
+            <label class="block text-gray-700 text-sm font-medium mb-2">Special Requests & Notes</label>
+            <textarea rows="3" placeholder="Any dietary restrictions, allergies, special activities..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500"></textarea>
+          </div>
+
+          <!-- Booking Status -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Status -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">Booking Status</label>
+              <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500" required>
+                <option>Pending</option>
+                <option>Confirmed</option>
+                <option>Ongoing</option>
+                <option>Completed</option>
+                <option>Cancelled</option>
+              </select>
+            </div>
+
+            <!-- Payment Status -->
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-2">Payment Status</label>
+              <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500" required>
+                <option>Pending</option>
+                <option>Partial</option>
+                <option>Paid</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button onclick="closeBookingModal()" class="border border-gray-300 bg-white px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors text-gray-700 font-medium">
+          Cancel
+        </button>
+        <button onclick="saveBooking()" class="bg-cyan-500 text-white px-6 py-2 rounded-lg hover:bg-cyan-600 transition-colors font-medium">
+          Save Booking
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openBookingModal(action, tripId) {
+      const modal = document.getElementById('bookingModal');
+      const title = document.getElementById('modalTitle');
+      const tripIdInput = document.getElementById('tripId');
+      
+      tripIdInput.value = tripId;
+      
+      if (action === 'book') {
+        title.textContent = 'New Booking - ' + tripId;
+      } else if (action === 'edit') {
+        title.textContent = 'Edit Booking - ' + tripId;
+      }
+      
+      modal.classList.remove('hidden');
+      modal.classList.add('show');
+    }
+
+    function closeBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      modal.classList.remove('show');
+      modal.classList.add('hidden');
+    }
+
+    function saveBooking() {
+      alert('Booking saved successfully!');
+      closeBookingModal();
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('bookingModal');
+      if (event.target === modal) {
+        closeBookingModal();
+      }
+    });
+
+    // Sidebar toggle functionality
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (sidebarToggle) {
+      sidebarToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('open');
+      });
+    }
+
+    // Close sidebar when clicking on a link
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
