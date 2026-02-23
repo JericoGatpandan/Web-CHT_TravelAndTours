@@ -83,6 +83,7 @@
 
                 <div id="loginMessage"></div>
 
+                <-- Sign Lang-->
                 <div class="login-actions">
                     <button type="submit" class="btn btn-primary">Sign In</button>
                 </div>
